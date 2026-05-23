@@ -1,0 +1,11 @@
+# Part 1: Multi-Armed Bandits
+numpy
+matplotlib
+
+# Part 2: RLHF notebook
+trl==0.9.6
+transformers==4.46.3
+datasets
+accelerate
+torch
+tqdm
