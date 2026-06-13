@@ -9,3 +9,6 @@ datasets
 accelerate
 torch
 tqdm
+
+ipykernel
+rich
