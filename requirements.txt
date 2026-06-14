@@ -13,3 +13,4 @@ tqdm
 ipykernel
 rich
 nbconvert
+ipywidgets
