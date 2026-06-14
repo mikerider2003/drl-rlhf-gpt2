@@ -12,3 +12,4 @@ tqdm
 
 ipykernel
 rich
+nbconvert

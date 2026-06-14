@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -p GPU              # partition (queue)
 #SBATCH -N 1                # number of nodes
-#SBATCH -t 0-05:00          # time (D-HH:MM)
+#SBATCH -t 0-36:00          # time (D-HH:MM)
 #SBATCH -o outputs/output.%N.%j.out  # STDOUT
 #SBATCH -e outputs/output.%N.%j.err  # STDERR
 #SBATCH --gres=gpu:1        # request 1 GPU
