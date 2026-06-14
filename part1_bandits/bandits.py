@@ -250,7 +250,7 @@ def plot_regret(results, title="Cumulative Regret Comparison"):
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig("regret_comparison.png", dpi=150)
+    plt.savefig("part1_bandits/regret_comparison.png", dpi=150)
     plt.show()
     print("Plot saved to regret_comparison.png")
 
