@@ -1,0 +1,4 @@
+[NbConvertApp] Converting notebook rlhf_sentiment.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+slurmstepd-sepia: error: *** JOB 47234 ON sepia CANCELLED AT 2026-06-14T06:14:45 DUE TO TIME LIMIT ***
+[IPKernelApp] WARNING | Parent appears to have exited, shutting down.
