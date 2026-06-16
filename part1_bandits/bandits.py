@@ -101,13 +101,27 @@ class UCB:
     def select_arm(self):
         self.t += 1
         # TODO: implement UCB1 arm selection
+        
         # 1. If any arm has count 0, select it
+        for i in range(self.k):
+            if self.counts[i] == 0:
+                return i
+
         # 2. Otherwise, select arm with highest Q(a) + c * sqrt(ln(t) / N(a))
-        raise NotImplementedError("TODO: implement UCB1 arm selection")
+        ucb_v = self.q_values + self.c * np.sqrt(np.log(self.t) / self.counts)
+        
+        best_arm = 0
+        for i in range(1, self.k):
+            if ucb_v[i] > ucb_v[best_arm]:
+                best_arm = i
+                
+        return best_arm
 
     def update(self, arm, reward):
         # TODO: update counts and q_values (same incremental mean as EpsilonGreedy)
-        raise NotImplementedError("TODO: implement UCB1 update")
+        self.counts[arm] += 1
+        # Incremental mean update
+        self.q_values[arm] += (reward - self.q_values[arm]) / self.counts[arm]
 
 
 class ThompsonSampling:
@@ -277,13 +291,13 @@ if __name__ == "__main__":
 
     # --- UCB (TODO) ---
     # Uncomment the following once you have implemented the UCB class:
-    #
-    # print("Running UCB...")
-    # mean_reg, std_reg = run_multiple_experiments(
-    #     make_agent_fn=lambda k: UCB(k, c=2.0),
-    #     k=K, n_steps=N_STEPS, n_runs=N_RUNS
-    # )
-    # results["UCB (c=2)"] = (mean_reg, std_reg)
+    
+    print("Running UCB...")
+    mean_reg, std_reg = run_multiple_experiments(
+        make_agent_fn=lambda k: UCB(k, c=2.0),
+        k=K, n_steps=N_STEPS, n_runs=N_RUNS
+    )
+    results["UCB (c=2)"] = (mean_reg, std_reg)
 
     # --- Thompson Sampling (TODO) ---
     # Uncomment the following once you have implemented ThompsonSampling:
