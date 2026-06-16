@@ -156,14 +156,26 @@ class ThompsonSampling:
 
     def select_arm(self):
         # TODO: implement Thompson Sampling arm selection
+        
         # 1. For each arm, compute posterior mean and std
+        posterior_mean = self.sum_rewards / (self.counts + 1)
+        posterior_std = 1 / np.sqrt(self.counts + 1)
+
         # 2. Sample theta_a from the posterior
+        theta_samples = np.random.normal(posterior_mean, posterior_std)
+
         # 3. Select arm with highest theta_a
-        raise NotImplementedError("TODO: implement Thompson Sampling arm selection")
+        best_arm = 0
+        for i in range(1, self.k):
+            if theta_samples[i] > theta_samples[best_arm]:
+                best_arm = i
+
+        return best_arm
 
     def update(self, arm, reward):
         # TODO: update counts and sum_rewards
-        raise NotImplementedError("TODO: implement Thompson Sampling update")
+        self.counts[arm] += 1
+        self.sum_rewards[arm] += reward
 
 
 # =============================================================================
@@ -301,13 +313,13 @@ if __name__ == "__main__":
 
     # --- Thompson Sampling (TODO) ---
     # Uncomment the following once you have implemented ThompsonSampling:
-    #
-    # print("Running Thompson Sampling...")
-    # mean_reg, std_reg = run_multiple_experiments(
-    #     make_agent_fn=lambda k: ThompsonSampling(k),
-    #     k=K, n_steps=N_STEPS, n_runs=N_RUNS
-    # )
-    # results["Thompson Sampling"] = (mean_reg, std_reg)
+    
+    print("Running Thompson Sampling...")
+    mean_reg, std_reg = run_multiple_experiments(
+        make_agent_fn=lambda k: ThompsonSampling(k),
+        k=K, n_steps=N_STEPS, n_runs=N_RUNS
+    )
+    results["Thompson Sampling"] = (mean_reg, std_reg)
 
     # --- Plot ---
     plot_regret(results)
